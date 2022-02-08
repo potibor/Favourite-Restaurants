@@ -34,6 +34,9 @@ object Libraries {
     const val roomCompiler = "androidx.room:room-compiler:${Versions.room}"
     const val roomTesting = "androidx.room:room-testing:${Versions.room}"
 
+    // Network
+    const val gson = "com.google.code.gson:gson:${Versions.gson}"
+
     //Test
     const val coroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
     const val junit = "junit:junit:${Versions.junit}"
