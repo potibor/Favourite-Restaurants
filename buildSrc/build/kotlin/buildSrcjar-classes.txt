@@ -1,1 +1,1 @@
-/Users/hasanozanal/AndroidProjects/FavoriteRestaurants/buildSrc/build/classes/kotlin/main/Libraries.class:/Users/hasanozanal/AndroidProjects/FavoriteRestaurants/buildSrc/build/classes/kotlin/main/Versions.class
+/Users/ozan.al/StudioProjects/Favourite-Restaurants/buildSrc/build/classes/kotlin/main/Libraries.class:/Users/ozan.al/StudioProjects/Favourite-Restaurants/buildSrc/build/classes/kotlin/main/Versions.class
