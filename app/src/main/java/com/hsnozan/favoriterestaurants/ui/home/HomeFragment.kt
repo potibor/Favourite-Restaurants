@@ -8,13 +8,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.hsnozan.favoriterestaurants.R
 import com.hsnozan.favoriterestaurants.databinding.FragmentHomeBinding
+import com.hsnozan.favoriterestaurants.ui.home.adapter.HomeAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
-    private val homeViewModel by viewModels<HomeViewModel>()
     private lateinit var binding: FragmentHomeBinding
+    private val homeViewModel by viewModels<HomeViewModel>()
+    private val homeAdapter by lazy { HomeAdapter() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,8 +28,13 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHomeBinding.bind(view)
-        binding.viewModel = homeViewModel
         binding.lifecycleOwner = this
+        initBindings()
+    }
+
+    private fun initBindings() = with(binding) {
+        viewModel = homeViewModel
+        homeRecyclerView.adapter = homeAdapter
     }
 
 }
