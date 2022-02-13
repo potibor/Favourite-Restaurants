@@ -19,7 +19,7 @@ data class RestaurantEntity(
         @ColumnInfo(name = "status") val status: String = "",
 ) {
     @Ignore
-    val sortingValuesEntity: SortingValuesEntity? = null
+    var sortingValuesEntity: SortingValuesEntity? = null
 
     fun toRestaurantModel() = Restaurant(
             id = id, name = name,

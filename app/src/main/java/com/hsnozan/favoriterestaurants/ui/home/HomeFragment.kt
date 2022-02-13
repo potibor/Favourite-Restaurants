@@ -36,5 +36,4 @@ class HomeFragment : Fragment() {
         viewModel = homeViewModel
         homeRecyclerView.adapter = homeAdapter
     }
-
 }
