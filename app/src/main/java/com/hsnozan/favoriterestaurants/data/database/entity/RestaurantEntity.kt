@@ -1,9 +1,6 @@
 package com.hsnozan.favoriterestaurants.data.database.entity
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.Ignore
-import androidx.room.PrimaryKey
+import androidx.room.*
 import com.hsnozan.favoriterestaurants.data.model.Restaurant
 import com.hsnozan.favoriterestaurants.data.model.SortingValues
 
@@ -13,40 +10,41 @@ import com.hsnozan.favoriterestaurants.data.model.SortingValues
 
 @Entity(tableName = "restaurant")
 data class RestaurantEntity(
-        @PrimaryKey(autoGenerate = true)
-        @ColumnInfo(name = "id") val id: Int = 0,
-        @ColumnInfo(name = "name") val name: String = "",
-        @ColumnInfo(name = "status") val status: String = "",
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id") val id: Int = 0,
+    val name: String = "",
+    val status: String = "",
+    val isMovieFavourited: Int = 0,
+    val sortingValues: SortingValuesEntity? = SortingValuesEntity()
 ) {
-    @Ignore
-    var sortingValuesEntity: SortingValuesEntity? = null
-
     fun toRestaurantModel() = Restaurant(
-            id = id, name = name,
-            sortingValues = sortingValuesEntity?.toSortingValuesModel(), status = status
+        id = id,
+        name = name,
+        sortingValues = sortingValues?.toSortingValuesModel(),
+        status = status,
+        isMovieFavourited = isMovieFavourited
     )
 }
 
-@Entity(tableName = "sortingValues")
 data class SortingValuesEntity(
-        @PrimaryKey(autoGenerate = true)
-        @ColumnInfo(name = "bestMatch") val bestMatch: Double = 0.0,
-        @ColumnInfo(name = "newest") val newest: Double = 0.0,
-        @ColumnInfo(name = "ratingAverage") val ratingAverage: Double = 0.0,
-        @ColumnInfo(name = "distance") val distance: Int = 0,
-        @ColumnInfo(name = "popularity") val popularity: Double = 0.0,
-        @ColumnInfo(name = "averageProductPrice") val averageProductPrice: Int = 0,
-        @ColumnInfo(name = "deliveryCosts") val deliveryCosts: Int = 0,
-        @ColumnInfo(name = "minCost") val minCost: Int = 0,
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "bestMatch") val bestMatch: Double = 0.0,
+    val newest: Double = 0.0,
+    val ratingAverage: Double = 0.0,
+    val distance: Int = 0,
+    val popularity: Double = 0.0,
+    val averageProductPrice: Int = 0,
+    val deliveryCosts: Int = 0,
+    val minCost: Int = 0,
 ) {
     fun toSortingValuesModel() = SortingValues(
-            bestMatch = bestMatch,
-            newest = newest,
-            ratingAverage = ratingAverage,
-            distance = distance,
-            popularity = popularity,
-            averageProductPrice = averageProductPrice,
-            deliveryCosts = deliveryCosts,
-            minCost = minCost
+        bestMatch = bestMatch,
+        newest = newest,
+        ratingAverage = ratingAverage,
+        distance = distance,
+        popularity = popularity,
+        averageProductPrice = averageProductPrice,
+        deliveryCosts = deliveryCosts,
+        minCost = minCost
     )
 }

@@ -1,11 +1,7 @@
 package com.hsnozan.favoriterestaurants.data.database.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.hsnozan.favoriterestaurants.data.database.entity.RestaurantEntity
-import com.hsnozan.favoriterestaurants.data.model.Restaurant
 
 /**
  * Created by hsnozan on 9.02.2022.
@@ -21,4 +17,6 @@ interface RestaurantsDao {
     @JvmSuppressWildcards
     suspend fun addAllRestaurantsFromJson(list: List<RestaurantEntity>)
 
+    @Update
+    suspend fun updateRestaurant(restaurantEntity: RestaurantEntity)
 }

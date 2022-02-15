@@ -7,11 +7,16 @@ data class Restaurant(
     override val id: Int,
     val name: String,
     val sortingValues: SortingValues?,
-    val status: String
+    val status: String,
+    var isMovieFavourited: Int = 0
 ) : ListAdapterItem {
     fun toEntityModel(): RestaurantEntity {
-        val entityModel = RestaurantEntity(id = id, name, status)
-        entityModel.sortingValuesEntity = sortingValues?.toEntityModel()
-        return entityModel
+        return RestaurantEntity(
+            id = id,
+            name = name,
+            status = status,
+            isMovieFavourited = isMovieFavourited,
+            sortingValues = sortingValues?.toEntityModel()
+        )
     }
 }

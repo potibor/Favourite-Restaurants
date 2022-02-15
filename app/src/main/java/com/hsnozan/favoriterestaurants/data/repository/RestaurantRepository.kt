@@ -10,8 +10,12 @@ import javax.inject.Inject
 class RestaurantRepository @Inject constructor(
     private val localDataSource: RestaurantsLocalDataSource
 ) {
-    suspend fun fetchRestaurants(): List<Restaurant> {
+    suspend fun fetchRestaurants(): MutableList<Restaurant> {
         val response = localDataSource.getAll()
-        return response
+        return response.toMutableList()
+    }
+
+    suspend fun updateRestaurant(restaurant: Restaurant) {
+        return localDataSource.update(restaurant = restaurant)
     }
 }

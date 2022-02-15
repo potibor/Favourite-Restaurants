@@ -10,9 +10,9 @@ import javax.inject.Inject
  */
 class FetchRestaurantsUseCase @Inject constructor(
     private val repository: RestaurantRepository
-) : UseCase<List<Restaurant>, Unit>() {
+) : UseCase<MutableList<Restaurant>, Unit>() {
 
-    override suspend fun buildUseCase(params: Unit): List<Restaurant> {
+    override suspend fun buildUseCase(params: Unit): MutableList<Restaurant> {
         return repository.fetchRestaurants()
     }
 }

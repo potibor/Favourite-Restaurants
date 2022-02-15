@@ -20,7 +20,9 @@ class RestaurantsLocalDataSource @Inject constructor(
             RestaurantEntity(
                 id = it.id,
                 name = it.name,
-                status = it.status
+                status = it.status,
+                sortingValues = it.sortingValues,
+                isMovieFavourited = it.isMovieFavourited
             ).toRestaurantModel()
         }
 
@@ -32,5 +34,17 @@ class RestaurantsLocalDataSource @Inject constructor(
             return restaurantListModel.restaurants
         }
         return response
+    }
+
+    suspend fun update(restaurant: Restaurant) = with(restaurant) {
+        restaurantsDao.updateRestaurant(
+            RestaurantEntity(
+                id = id,
+                name = name,
+                sortingValues = sortingValues?.toEntityModel(),
+                status = status,
+                isMovieFavourited = isMovieFavourited
+            )
+        )
     }
 }
