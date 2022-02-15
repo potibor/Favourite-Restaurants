@@ -1,6 +1,8 @@
 package com.hsnozan.favoriterestaurants.data.database.entity
 
-import androidx.room.*
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.hsnozan.favoriterestaurants.data.model.Restaurant
 import com.hsnozan.favoriterestaurants.data.model.SortingValues
 

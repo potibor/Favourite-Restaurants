@@ -6,18 +6,26 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.hsnozan.favoriterestaurants.NavGraphMainDirections
 import com.hsnozan.favoriterestaurants.R
 import com.hsnozan.favoriterestaurants.data.model.Restaurant
 import com.hsnozan.favoriterestaurants.databinding.FragmentHomeBinding
 import com.hsnozan.favoriterestaurants.ui.home.adapter.HomeAdapter
+import com.hsnozan.favoriterestaurants.ui.home.listener.ItemClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), ItemClickListener {
 
     private lateinit var binding: FragmentHomeBinding
     private val homeViewModel by viewModels<HomeViewModel>()
-    private val homeAdapter by lazy { HomeAdapter(context = requireContext(), homeViewModel) }
+    private val homeAdapter by lazy {
+        HomeAdapter(
+            context = requireContext(),
+            homeViewModel, itemListener = this
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,5 +53,9 @@ class HomeFragment : Fragment() {
 
     private fun updateUI(list: List<Restaurant>) {
         homeAdapter.submitList(list)
+    }
+
+    override fun onItemClickListener(id: Int) {
+        findNavController().navigate(NavGraphMainDirections.toDetailFragment(id))
     }
 }

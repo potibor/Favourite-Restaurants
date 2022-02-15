@@ -13,10 +13,9 @@ import javax.inject.Inject
 class RestaurantsLocalDataSource @Inject constructor(
     private val restaurantsDao: RestaurantsDao
 ) {
-    private val restaurantListModel = getJsonDataFromAsset<RestaurantListModel>("sample.json")
 
     suspend fun getAll(): List<Restaurant> {
-        val response = restaurantsDao.getRestaurants().map {
+        return restaurantsDao.getRestaurants().map {
             RestaurantEntity(
                 id = it.id,
                 name = it.name,
@@ -25,15 +24,6 @@ class RestaurantsLocalDataSource @Inject constructor(
                 isMovieFavourited = it.isMovieFavourited
             ).toRestaurantModel()
         }
-
-        if (response.isNullOrEmpty()) {
-            val responseFromJson = restaurantListModel.restaurants.map {
-                it.toEntityModel()
-            }
-            restaurantsDao.addAllRestaurantsFromJson(responseFromJson)
-            return restaurantListModel.restaurants
-        }
-        return response
     }
 
     suspend fun update(restaurant: Restaurant) = with(restaurant) {
@@ -46,5 +36,16 @@ class RestaurantsLocalDataSource @Inject constructor(
                 isMovieFavourited = isMovieFavourited
             )
         )
+    }
+
+    suspend fun getRestaurant(id: Int): Restaurant {
+        return restaurantsDao.getRestaurant(id).toRestaurantModel()
+    }
+
+    suspend fun addAllRestaurantsFromJson(responseFromJson: MutableList<Restaurant>) {
+        val list = responseFromJson.map {
+            it.toEntityModel()
+        }
+        restaurantsDao.addAllRestaurantsFromJson(list)
     }
 }

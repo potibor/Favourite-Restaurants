@@ -7,6 +7,7 @@ import com.hsnozan.favoriterestaurants.R
 import com.hsnozan.favoriterestaurants.base.BaseListAdapter
 import com.hsnozan.favoriterestaurants.data.model.Restaurant
 import com.hsnozan.favoriterestaurants.databinding.ItemHomeBinding
+import com.hsnozan.favoriterestaurants.ui.home.listener.ItemClickListener
 import com.hsnozan.favoriterestaurants.ui.home.listener.ItemFavouriteClickListener
 
 /**
@@ -15,7 +16,8 @@ import com.hsnozan.favoriterestaurants.ui.home.listener.ItemFavouriteClickListen
 @SuppressLint("UseCompatLoadingForDrawables")
 class HomeAdapter(
     private val context: Context,
-    private val listener: ItemFavouriteClickListener
+    private val listener: ItemFavouriteClickListener,
+    private val itemListener: ItemClickListener
 ) : BaseListAdapter<ItemHomeBinding, Restaurant>() {
 
     override val layoutRes = R.layout.item_home
@@ -24,11 +26,13 @@ class HomeAdapter(
         restaurantName.text = item.name
         restaurantStatus.text = item.status
         favouriteButton.background = setBackgroundOfButton(item.isMovieFavourited)
-
         favouriteButton.setOnClickListener {
             item.isMovieFavourited = if (item.isMovieFavourited == 0) 1 else 0
             notifyItemChanged(position)
             listener.onFavouriteButtonClick(item, position)
+        }
+        itemHomeContainer.setOnClickListener{
+            itemListener.onItemClickListener(item.id)
         }
     }
 

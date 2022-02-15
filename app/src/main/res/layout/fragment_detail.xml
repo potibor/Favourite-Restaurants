@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.detail.DetailFragment">
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.hsnozan.favoriterestaurants.ui.detail.DetailViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/itemHomeContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/padding_large"
@@ -33,7 +36,6 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:textStyle="italic|bold"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/favouriteButton"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/restaurantName"
@@ -45,9 +47,26 @@
             android:layout_height="@dimen/button_width_height"
             android:layout_margin="@dimen/padding_large"
             android:background="@drawable/ic_empty_star"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/detailBestMatch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_large"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/restaurantStatus"
+            tools:text="Item 1" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/detailAverageProductPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_large"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/detailBestMatch"
+            tools:text="Item 2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

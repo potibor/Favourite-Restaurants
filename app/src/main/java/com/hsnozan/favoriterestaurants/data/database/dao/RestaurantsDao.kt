@@ -19,4 +19,7 @@ interface RestaurantsDao {
 
     @Update
     suspend fun updateRestaurant(restaurantEntity: RestaurantEntity)
+
+    @Query("SELECT * FROM restaurant WHERE id=:id")
+    suspend fun getRestaurant(id: Int): RestaurantEntity
 }

@@ -10,4 +10,29 @@
         android:name="com.hsnozan.favoriterestaurants.ui.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.hsnozan.favoriterestaurants.ui.detail.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail">
+
+        <argument
+            android:name="arg_model_id"
+            app:argType="integer"
+            app:nullable="false" />
+    </fragment>
+
+    <action
+        android:id="@+id/to_DetailFragment"
+        app:destination="@id/detailFragment"
+        app:enterAnim="@anim/enter"
+        app:exitAnim="@anim/exit"
+        app:popEnterAnim="@anim/pop_enter"
+        app:popExitAnim="@anim/pop_exit" >
+
+        <argument
+            android:name="arg_model_id"
+            app:argType="integer"
+            app:nullable="false" />
+    </action>
 </navigation>
