@@ -74,9 +74,7 @@ dependencies {
     implementation(Libraries.roomRuntime)
     implementation(Libraries.roomKtx)
     implementation(Libraries.gson)
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
+    implementation(Libraries.mocck)
 
     kapt(Libraries.hiltCompiler)
     kapt(Libraries.hiltAndroidXCompiler)

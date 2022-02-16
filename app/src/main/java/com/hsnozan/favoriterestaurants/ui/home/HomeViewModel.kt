@@ -26,21 +26,18 @@ class HomeViewModel @Inject constructor(
     private val _restaurantsLiveData = MutableLiveData<MutableList<Restaurant>>()
     val restaurantsLiveData: LiveData<MutableList<Restaurant>> = _restaurantsLiveData
 
-    private val _sortingFilterClicked = MutableLiveData<Double>()
-    val sortingFilterClicked: LiveData<Double> = _sortingFilterClicked
+    val onError = MutableLiveData<String>()
 
     init {
         fetchRestaurants()
     }
 
-    private fun fetchRestaurants() = viewModelScope.launch {
+    fun fetchRestaurants() = viewModelScope.launch {
         fetchRestaurantsUseCase.run(Unit).either(::handleError, ::updateUI)
     }
 
     private fun handleError(throwable: Throwable) {
-        throwable.localizedMessage?.let {
-            Log.i("TAGG:", it)
-        }
+        onError.value = throwable.localizedMessage
     }
 
     private fun updateUI(response: MutableList<Restaurant>) {
@@ -51,7 +48,7 @@ class HomeViewModel @Inject constructor(
         updateModel(model)
     }
 
-    private fun updateModel(model: Restaurant) = viewModelScope.launch {
+    fun updateModel(model: Restaurant) = viewModelScope.launch {
         updateRestaurantUseCase.run(
             UpdateRestaurantUseCase.Params(restaurant = model)
         ).either(::handleError) {
@@ -59,8 +56,8 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    private fun filterList(type: SortingValueType) {
-        _restaurantsLiveData.value = _restaurantsLiveData.value?.sortedWith(
+    fun filterList(type: SortingValueType, list: MutableList<Restaurant>?) {
+        _restaurantsLiveData.value = list?.sortedWith(
             compareByDescending<Restaurant> {
                 it.isMovieFavourited
             }.thenBy {
@@ -68,7 +65,7 @@ class HomeViewModel @Inject constructor(
             }.thenByDescending { filterBySorting(type, it) })?.toMutableList()
     }
 
-    private fun filterByStatus(status: String): Int {
+    fun filterByStatus(status: String): Int {
         return when (status) {
             OPEN.value -> -1
             ORDER_AHEAD.value -> 0
@@ -77,7 +74,7 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    private fun filterBySorting(type: SortingValueType, restaurant: Restaurant): Double {
+    fun filterBySorting(type: SortingValueType, restaurant: Restaurant): Double {
         restaurant.sortingValues?.let {
             return when (type) {
                 AVERAGE_PRODUCT_PRICE -> it.averageProductPrice.toDouble()
@@ -90,6 +87,6 @@ class HomeViewModel @Inject constructor(
     }
 
     override fun onSelect(type: SortingValueType) {
-        filterList(type)
+        filterList(type, _restaurantsLiveData.value)
     }
 }

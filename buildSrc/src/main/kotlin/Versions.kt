@@ -22,4 +22,5 @@ object Versions {
     const val dataBinding = "3.1.4"
     const val gson = "2.8.6"
     const val room = "2.4.1"
+    const val mocck = "1.10.2"
 }

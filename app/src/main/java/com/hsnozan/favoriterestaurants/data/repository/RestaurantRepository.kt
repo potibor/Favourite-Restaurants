@@ -17,10 +17,14 @@ class RestaurantRepository @Inject constructor(
 
         if (response.isNullOrEmpty()) {
             val responseFromJson = remoteDataSource.getAll()
-            localDataSource.addAllRestaurantsFromJson(responseFromJson)
+            addAllListToLocal(responseFromJson)
             return responseFromJson
         }
         return response.toMutableList()
+    }
+
+    suspend fun addAllListToLocal(responseFromJson: MutableList<Restaurant>) {
+        return localDataSource.addAllRestaurantsFromJson(responseFromJson)
     }
 
     suspend fun updateRestaurant(restaurant: Restaurant) {

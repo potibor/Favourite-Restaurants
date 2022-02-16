@@ -47,5 +47,6 @@ object Libraries {
     const val mockitoInline = "org.mockito:mockito-inline:${Versions.mockitoInline}"
     const val archCoreTesting = "androidx.arch.core:core-testing:${Versions.archCoreTesting}"
     const val assertj = "org.assertj:assertj-core:${Versions.assertj}"
+    const val mocck = "io.mockk:mockk:${Versions.mocck}"
 
 }
