@@ -29,3 +29,4 @@
 - **[Coroutines](https://github.com/Kotlin/kotlinx.coroutines):** Asynchronous programming
 - **[Room](https://developer.android.com/topic/libraries/architecture/room):** Object mapping for SQLite
 - **[Hilt](https://github.com/googlecodelabs/android-hilt):** Dependency injector
+- **[CoroutineTest](https://developer.android.com/codelabs/advanced-android-kotlin-training-testing-survey#0):** Unit Testing
