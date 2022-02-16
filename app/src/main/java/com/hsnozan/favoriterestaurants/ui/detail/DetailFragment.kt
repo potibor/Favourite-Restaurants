@@ -51,8 +51,14 @@ class DetailFragment : Fragment() {
         favouriteButton.background = setBackgroundOfButton(restaurant.isMovieFavourited)
 
         restaurant.sortingValues?.let {
-            detailBestMatch.text = it.bestMatch.toString()
-            detailAverageProductPrice.text = it.averageProductPrice.toString()
+            detailBestMatch.text = getString(
+                R.string.text_best_match_dynamic,
+                it.bestMatch.toString()
+            )
+            detailAverageProductPrice.text = getString(
+                R.string.text_average_price_dynamic,
+                it.averageProductPrice.toString()
+            )
         }
     }
 

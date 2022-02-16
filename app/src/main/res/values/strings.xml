@@ -7,4 +7,6 @@
     <string name="text_deliveryCosts">Delivery Costs</string>
     <string name="text_distance">Distance</string>
     <string name="text_select">Select</string>
+    <string name="text_best_match_dynamic">Best Match: %1s</string>
+    <string name="text_average_price_dynamic">Product Price: %1s</string>
 </resources>

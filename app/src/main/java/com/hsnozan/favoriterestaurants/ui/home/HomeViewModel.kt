@@ -65,7 +65,7 @@ class HomeViewModel @Inject constructor(
                 it.isMovieFavourited
             }.thenBy {
                 filterByStatus(it.status)
-            }.thenBy { filterBySorting(type, it) })?.toMutableList()
+            }.thenByDescending { filterBySorting(type, it) })?.toMutableList()
     }
 
     private fun filterByStatus(status: String): Int {
