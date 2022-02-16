@@ -20,3 +20,16 @@ data class Restaurant(
         )
     }
 }
+
+enum class StatusValueType(val value: String) {
+    OPEN("open"),
+    ORDER_AHEAD("order ahead"),
+    CLOSED("closed")
+}
+
+enum class SortingValueType(val value: String) {
+    AVERAGE_PRODUCT_PRICE("averageProductPrice"),
+    BEST_MATCH("bestMatch"),
+    DELIVERY_COSTS("deliveryCosts"),
+    DISTANCE("distance")
+}

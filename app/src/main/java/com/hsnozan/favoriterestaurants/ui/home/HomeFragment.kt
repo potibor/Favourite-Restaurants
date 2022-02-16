@@ -1,6 +1,7 @@
 package com.hsnozan.favoriterestaurants.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import com.hsnozan.favoriterestaurants.NavGraphMainDirections
 import com.hsnozan.favoriterestaurants.R
 import com.hsnozan.favoriterestaurants.data.model.Restaurant
 import com.hsnozan.favoriterestaurants.databinding.FragmentHomeBinding
+import com.hsnozan.favoriterestaurants.ui.dialog.CustomDialog
 import com.hsnozan.favoriterestaurants.ui.home.adapter.HomeAdapter
 import com.hsnozan.favoriterestaurants.ui.home.listener.ItemClickListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -45,6 +47,7 @@ class HomeFragment : Fragment(), ItemClickListener {
     private fun initBindings() = with(binding) {
         viewModel = homeViewModel
         homeRecyclerView.adapter = homeAdapter
+        sortingFilterButton.setOnClickListener(::sortingFilterClicked)
     }
 
     private fun observeViewModel() = with(homeViewModel) {
@@ -53,6 +56,11 @@ class HomeFragment : Fragment(), ItemClickListener {
 
     private fun updateUI(list: List<Restaurant>) {
         homeAdapter.submitList(list)
+    }
+
+    private fun sortingFilterClicked(view: View) {
+        Log.i("TAGG:", view.toString())
+        CustomDialog(homeViewModel).show(parentFragmentManager, "Dialog")
     }
 
     override fun onItemClickListener(id: Int) {

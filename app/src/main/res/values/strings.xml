@@ -2,4 +2,9 @@
     <string name="app_name">FavoriteRestaurants</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_average_product_price">Product Price</string>
+    <string name="text_best_match">Best Match</string>
+    <string name="text_deliveryCosts">Delivery Costs</string>
+    <string name="text_distance">Distance</string>
+    <string name="text_select">Select</string>
 </resources>
