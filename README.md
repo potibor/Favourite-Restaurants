@@ -1,5 +1,7 @@
 # Favourite-Restaurants
 
+- To run the app ---> Press Run Button for both Unit Tests and App.
+
 ## Architecture
 
 - Single Activity
